@@ -3,8 +3,108 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Classroom84X Kiosk</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Classroom84X Kiosk for android! Lock your phone and only allow gaming related apps! Locking moe only works with kiosk lockdown apps</title>
+    <style>
+        * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: black;
+    color: white;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    position: relative;
+}
+
+h1 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+}
+
+.icon-slot {
+    width: 150px;
+    height: 150px;
+    background-color: #f0f0f0;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.icon-slot img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.icon-slot .fallback {
+    color: #666;
+    font-size: 14px;
+}
+
+.icon-slot:hover {
+    background-color: #0096FF;
+    transform: scale(1.1);
+}
+
+.pin-container {
+    background-color: rgba(0, 0, 0, 0.8);
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+input[type="password"] {
+    padding: 10px;
+    margin-top: 10px;
+    width: 200px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #00FF00;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+button:hover {
+    background-color: #008000;
+}
+
+.exit-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    padding: 10px 15px;
+    background-color: #FF0000;
+    border: none;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.exit-btn:hover {
+    background-color: #cc0000;
+}
+    </style>
 </head>
 <body>
     <div class="container">
@@ -13,7 +113,6 @@
             <span class="fallback">No Image</span>
         </div>
 
-        <!-- Exit Kiosk Mode Button -->
         <button class="exit-btn" id="exitBtn" onclick="showPinEntry()">Exit Kiosk Mode</button>
 
         <div class="pin-container" id="pinContainer" style="display: none;">
@@ -22,6 +121,44 @@
             <button onclick="checkPin()">Submit</button>
         </div>
     </div>
-    <script src="script.js"></script>
+    
+    <script>
+function setIcon(imageSrc) {
+    const iconSlot = document.getElementById("iconSlot");
+    iconSlot.innerHTML = "";
+    if (imageSrc) {
+        const img = document.createElement("img");
+        img.src = imageSrc;
+        img.alt = "icon";
+        iconSlot.appendChild(img);
+    } else {
+        const fallback = document.createElement("span");
+        fallback.className = "fallback";
+        fallback.textContent = "No Image";
+        iconSlot.appendChild(fallback);
+    }
+}
+
+function launchApp() {
+    window.location.href="roblox://"
+}
+
+function showPinEntry() {
+    const pinContainer = document.getElementById("pinContainer");
+    pinContainer.style.display = "block";
+}
+
+function checkPin() {
+    const enteredPin = document.getElementById("pinInput").value;
+    if (enteredPin === "0080") {
+        alert("Correct PIN! Exiting kiosk mode...");
+        window.location.href = "about:blank";
+    } else {
+        alert("Incorrect PIN! Try again.");
+    }
+}
+
+setIcon("https://play-lh.googleusercontent.com/WNWZaxi9RdJKe2GQM3vqXIAkk69mnIl4Cc8EyZcir2SKlVOxeUv9tZGfNTmNaLC717Ht=s256-rw");
+    </script>
 </body>
 </html>
