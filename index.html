@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Classroom84X Kiosk</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Classroom84X Kiosk</h1>
+        <div class="icon-slot" id="iconSlot" onclick="launchApp()">
+            <span class="fallback">No Image</span>
+        </div>
+
+        <!-- Exit Kiosk Mode Button -->
+        <button class="exit-btn" id="exitBtn" onclick="showPinEntry()">Exit Kiosk Mode</button>
+
+        <div class="pin-container" id="pinContainer" style="display: none;">
+            <h2>Enter PIN to Exit</h2>
+            <input type="password" id="pinInput" placeholder="Enter PIN" />
+            <button onclick="checkPin()">Submit</button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
